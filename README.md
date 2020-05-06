@@ -1,6 +1,8 @@
 # apg-sdk-java
 Ayria Payment Gateway SDK Java
 
+![Java CI with Maven](https://github.com/AyriaOfficial/apg-sdk-java/workflows/Java%20CI%20with%20Maven/badge.svg)
+
 # Referral Code - Bussiness usage
 Register at https://ayriaplatform.com for receving your `ReferralCode`
 
