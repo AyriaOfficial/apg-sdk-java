@@ -3,14 +3,8 @@ Ayria Payment Gateway SDK Java
 
 ![Java CI with Maven](https://github.com/AyriaOfficial/apg-sdk-java/workflows/Java%20CI%20with%20Maven/badge.svg)
 
-# Referral Code - Bussiness usage
-Register at https://ayriaplatform.com for receving your `ReferralCode`
-
-# Referral Code - Personal usage
-Register at https://ayria.club for receiving your `ReferralCode`
-
-&#x202b;
-شما می‌توانید با داشتن `کد معرف` حقوقی یا حقیقی از امکانات درگاه پرداخت آیریا استفاده کنید.
+# Documentation
+[https://api.ayria.club/docs/index.html#_apg_ayria_payment_gateway](https://api.ayria.club/docs/index.html#_apg_ayria_payment_gateway)
 
 # Installation
 ## Maven dependency
@@ -18,6 +12,6 @@ Register at https://ayria.club for receiving your `ReferralCode`
 <dependency>
   <groupId>io.github.ayriaofficial</groupId>
   <artifactId>apg-sdk-java</artifactId>
-  <version>1.0</version>
+  <version>1.1</version>
 </dependency>
 ```
