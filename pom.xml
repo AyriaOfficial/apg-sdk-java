@@ -4,7 +4,7 @@
   <groupId>io.github.ayriaofficial</groupId>
   <artifactId>apg-sdk-java</artifactId>
   <packaging>jar</packaging>
-  <version>1.0</version>
+  <version>1.1</version>
   <name>apg-sdk-java</name>
   <description>Ayria payment gateway(APG) SDK</description>
   <url>https://ayriaplatform.com</url>

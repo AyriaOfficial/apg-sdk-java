@@ -22,7 +22,10 @@ import org.springframework.web.client.HttpClientErrorException;
 @TestMethodOrder(OrderAnnotation.class)
 public class ApgSdkTest {
 
-    private final ApgSdk sdk = new ApgSdk(100120, false);
+    private final boolean isProduction = false;
+    private final String ApgApiKey = "APG3oNq6T4xJTzPiyaLRBIQqfW8VhswK4a79zGxG1nPM7pPtPO5JXUqooEtxQUxl";
+    private final String walletIdentity = "10012036";
+    private final ApgSdk sdk = new ApgSdk(walletIdentity, ApgApiKey, isProduction);
 
     private final static String payerMobile = "09120000000";
     public static String latestReferenceCode;
@@ -49,9 +52,9 @@ public class ApgSdkTest {
     @Order(3)
     public void test003CreateValidCommand() {
         final AyriaPaymentV1Command cmd = new AyriaPaymentV1Command(sdk.getReferralCode(), new BigDecimal("1000"), payerMobile);
-        final ResponseEntity<String> res = sdk.createPayment(cmd);
+        final ResponseEntity<AyriaPaymentV1DTO> res = sdk.createPayment(cmd);
         assertTrue(res.getStatusCode().equals(HttpStatus.CREATED), "Status should be 201");
-        latestReferenceCode = res.getBody();
+        latestReferenceCode = res.getBody().getReferenceCode();
         assertTrue(StringUtils.hasText(latestReferenceCode), "Reference code should not be empty");
     }
 
@@ -63,9 +66,9 @@ public class ApgSdkTest {
         cmd.setPayerName("رستم دستان");
         cmd.setPaymentNumber("123456");
         cmd.setExtraData("{\"product\": \"clock\"}");
-        final ResponseEntity<String> res = sdk.createPayment(cmd);
+        final ResponseEntity<AyriaPaymentV1DTO> res = sdk.createPayment(cmd);
         assertTrue(res.getStatusCode().equals(HttpStatus.CREATED), "Status should be 201");
-        latestReferenceCode = res.getBody();
+        latestReferenceCode = res.getBody().getReferenceCode();
         assertTrue(StringUtils.hasText(latestReferenceCode), "Reference code should not be empty");
     }
 
@@ -86,7 +89,7 @@ public class ApgSdkTest {
      // assertEquals("آیریا", dto.getPayeeName());  // Expected value depends to App#referralCode()
         assertFalse(dto.isPaid());
         assertFalse(dto.isCanceled());
-        System.out.println(String.format("Payment created at %s, payment url is: %s", dto.getCreatedDate(), dto.getPaymentUrl().replaceAll("api.ayria.club", "dev.ayria.club")));
+        System.out.println(String.format("Payment created at %s, payment url is: %s", dto.getCreatedDate(), sdk.isProduction() ? dto.getPaymentUrl() : dto.getPaymentUrl().replace("api.ayria.club", "dev.ayria.club")));
     }
 
     @Test
